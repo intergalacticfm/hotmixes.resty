@@ -1,14 +1,8 @@
-'content' is in stuff/
+modify docker-compose.yml to your own local music dir
 
-# build container
+# build and run container
 
-docker build -t hotmixesresty:0.1 .
-
-
-# run container
-
-docker container run --publish 8080:8080 hotmixesresty:0.1
-
+docker-compose up --build
 
 # access container
 

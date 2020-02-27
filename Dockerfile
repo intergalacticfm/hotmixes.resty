@@ -9,7 +9,6 @@ WORKDIR /app
 
 COPY templates /app/templates
 COPY style /app/style
-COPY stuff /app/stuff
 COPY img /app/img
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
