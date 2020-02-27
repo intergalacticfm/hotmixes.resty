@@ -1,0 +1,14 @@
+{(head.html)}
+{% for i, dir in ipairs(local_dirs) do %}
+    <br>
+        <a href="{{ local_uri .. dir }}" class="djsection"><span>{{ dir }}</span></a>
+    <br>
+{% end %}
+
+{% for i, file in ipairs(local_files) do %}
+    <a class="amixlink" href="{{ local_path .. file }}">
+        <span class="mixlink">{{ file }}</span>
+    </a>
+    </br>
+{% end %}
+{(foot.html)}

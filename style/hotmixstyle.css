@@ -1,0 +1,248 @@
+.h1
+{
+    font-family: Staatliches;
+    color: #e2001a;
+    border-top: 3px solid #e2001a;
+    border-bottom: 3px solid#e2001a;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    line-height: 1em;
+}
+
+.p
+{
+    font-family: helvetica;
+    color: #7e7e7e;
+    margin-bottom: 45px;
+    font-size: 10px;
+}
+
+.href
+{
+    font-family: helvetica;
+    text-decoration: none;
+}
+
+.mixlink
+{
+    font-family: helvetica;
+    color: #9d9d9d;
+    line-height: 1.6em;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: inherit;
+}
+
+.amixlink{
+    font-family: helvetica;
+    color: #9d9d9d;
+    line-height: 1.6em;
+    font-weight: 600;
+    font-size: 14px;
+    text-decoration: underline;
+}
+
+.body
+{
+    width: 80%;
+    padding-left: 10%;
+    padding-right: 10%;
+    background-color: #222222;
+}
+
+.mixsections
+{
+    font-family: staatliches;
+    font-weight: 900;
+    font-size: 16px;
+    color: #787878;
+    padding: 5px;
+    margin-top: 2%;
+    margin-bottom: 5px;
+    margin-right: 15px;
+    border: solid 3px #787878;
+    text-decoration: none;
+}
+
+.hotmixlogo
+{
+    width: 150px;
+    padding-bottom: 0px;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+.h2
+{
+    font-family: Staatliches;
+    font-size: 24px;
+    color: #4c4c4c;
+    font-weight: 200;
+    border-bottom: 2px solid #4c4c4c;
+    margin-bottom: 0px;
+}
+
+.header
+{
+    width: 100%;
+    background-image: url('/img/header.png');
+    max-height: 185px;
+}
+
+.footer
+{
+    width: 100%;
+    height: 250px;
+    border-top: 2PX SOLID #e2001a;
+}
+
+null
+{
+    font-family: staatliches;
+    font-size: 18px;
+    text-decoration: inherit;
+    color: e2001a;
+}
+
+.djsection
+{
+    font-family: staatliches;
+    font-size: 33px;
+    color: e2001a;
+    line-height: 1em;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.h3
+{
+    font-family: staatliches;
+    color: #e2001a;
+    font-size: 24px;
+    padding-top: 5px;
+    border-bottom: 2px solid #e2001a;
+}
+
+.homeheader
+{
+    background-image: url('/img/header.png');
+    background-repeat: no-repeat;
+    padding-bottom: 20px;
+}
+
+.bottomimg
+{
+}
+
+.imglink
+{
+    width: 200px;
+}
+
+.footerlegal
+{
+    right: 0;
+    float: right;
+    margin-top: 80px;
+}
+
+/* Three image containers (use 25% for four, and 50% for two, etc) */
+
+.column
+{
+    float: left;
+    margin-left: 0px;
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+    width: 20%;
+}
+
+/* Clear floats after image containers */
+
+.row::after
+{
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.row
+{
+    height: 250px;
+    margin-bottom: 10px;
+    margin-top: 30px;
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+@media screen and (max-width: 768px)
+{
+    .column
+    {
+        padding-left: 5%;
+        padding-right: 5%;
+        width: 40%;
+    }
+    .h2
+    {
+        font-size: 14px;
+    }
+    .footer
+    {
+        margin-top: 15%;
+    }
+}
+
+@media screen and (max-width: 500px)
+{
+    .column
+    {
+        padding-left: 0%;
+        padding-right: 5%;
+        width: 45%;
+    }
+}
+
+.profileimg
+{
+    overflow: hidden;
+    height: auto;
+    padding-left: auto;
+    padding-right: auto;
+    width: 30%;
+}
+
+.profilesection
+{
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 2.5%;
+    background-color: #e2001a;
+}
+
+
+/*
+     FILE ARCHIVED ON 11:02:18 Aug 29, 2019 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 03:15:22 Feb 27, 2020.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+/*
+playback timings (ms):
+  esindex: 0.016
+  captures_list: 786.417
+  PetaboxLoader3.resolve: 426.538
+  load_resource: 440.276
+  exclusion.robots: 0.208
+  CDXLines.iter: 15.843 (3)
+  PetaboxLoader3.datanode: 772.175 (4)
+  exclusion.robots.policy: 0.192
+  RedisCDXSource: 4.713
+  LoadShardBlock: 761.815 (3)
+*/
