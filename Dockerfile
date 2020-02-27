@@ -2,16 +2,11 @@ FROM openresty/openresty:1.15.8.2-4-alpine-fat
 
 RUN apk add openssl-dev git
 RUN apk add --no-cache curl perl
-#RUN luarocks install --server=http://luarocks.org/dev ngx-oauth
-#RUN luarocks install --server=http://luarocks.org/dev lua-resty-url
 RUN luarocks install --server=http://luarocks.org/dev lua-resty-template
 RUN opm get spacewander/luafilesystem
 
 WORKDIR /app
 
-# COPY head.html .
-# COPY foot.html .
-# COPY view.html .
 COPY templates /app/templates
 COPY style /app/style
 COPY stuff /app/stuff
