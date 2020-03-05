@@ -9,3 +9,5 @@ services:
             - "8080:8080"
         volumes:
             - ~/Music:/mnt/mixes:ro
+        tmpfs:
+            - /tmp
