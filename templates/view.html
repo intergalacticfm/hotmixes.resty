@@ -1,4 +1,5 @@
 {(head.html)}
+<div class="all_files">
 {% for i, dir in ipairs(local_dirs) do %}
     <br>
         <a href="{{ local_uri .. dir }}" class="djsection"><span>{{ dir }}</span></a>
@@ -11,4 +12,17 @@
     </a>
     </br>
 {% end %}
+</div>
+
+<div class="latest_files">
+    <br>
+    <h1 class="h1">Our latest uploads:</h1>
+    <br>
+{% for i, file in ipairs(local_latestpath) do %}
+    <a class="amixlink" href="{{ '/mixes/' .. file }}">
+        <span class="mixlink">{{ local_latestname[i] }}</span>
+    </a>
+    </br>
+{% end %}
+</div>
 {(foot.html)}

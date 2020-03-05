@@ -1,8 +1,8 @@
-modify docker-compose.yml to your own local music dir
+To test: modify docker-compose-local.yml to your own local music dir
 
 # build and run container
 
-docker-compose up --build
+docker-compose -f docker-compose-local.yml up --build
 
 # access container
 
