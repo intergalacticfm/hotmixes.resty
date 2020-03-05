@@ -36,7 +36,7 @@ function write_hotmixes()
     -- list last 10 modified files in our directory
     function latest_files(directory)
         local i, t, popen = 0, {}, io.popen
-        local pfile = popen('find "'..directory..'" -type f ! -name \'*.filepart\' -printf \'%C@ %p\n\'| sort -n | tail -10 | cut -f2- -d" "| sed s:"'..directory..'/"::')
+        local pfile = popen('find "'..directory..'" -type f ! -name \'*.filepart\' -printf \'%C@ %p\n\'| sort -n -r | head -10 | cut -f2- -d" "| sed s:"'..directory..'/"::')
         for filename in pfile:lines() do
             i = i + 1
             t[i] = filename
@@ -74,7 +74,7 @@ function write_hotmixes()
         local_path = path_uri,
         local_files = files,
         local_dirs = dirs,
-        local_latest = latest_path,
+        local_latestpath = latest_path,
         local_latestname = latest_name
     })
 end
