@@ -6,6 +6,7 @@ RUN luarocks install --server=http://luarocks.org/dev lua-resty-template
 RUN opm get spacewander/luafilesystem
 
 RUN apk --no-cache add findutils
+RUN apk --no-cache add coreutils
 
 WORKDIR /app
 
