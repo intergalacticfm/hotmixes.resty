@@ -16,7 +16,7 @@ function write_hotmixes()
     -- lfs.dir() doesn't work, so we use this function to list contents of a path
     function scandir(directory)
         local i, t, popen = 0, {}, io.popen
-        local pfile = popen('ls "'..directory..'"')
+        local pfile = popen('ls "'..directory..'" -I "*.filepart"')
         for filename in pfile:lines() do
             i = i + 1
             t[i] = filename
@@ -36,7 +36,7 @@ function write_hotmixes()
     -- list last 10 modified files in our directory
     function latest_files(directory)
         local i, t, popen = 0, {}, io.popen
-        local pfile = popen('find "'..directory..'" -type f -printf \'%T@ %p\n\'| sort -n | tail -10 | cut -f2- -d" "| sed s:"'..directory..'/"::')
+        local pfile = popen('find "'..directory..'" -type f ! -name \'*.filepart\' -printf \'%T@ %p\n\'| sort -n | tail -10 | cut -f2- -d" "| sed s:"'..directory..'/"::')
         for filename in pfile:lines() do
             i = i + 1
             t[i] = filename
