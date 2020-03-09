@@ -68,8 +68,21 @@ function write_hotmixes()
     end
 
     local path_uri = '/mixes' .. request_uri
+    
+    function total_files_dir( path )
+        local i, t, popen = 0, {}, io.popen
+        local pfile = popen('find "'..path..'" -type f | wc -l')
+        for total in pfile:lines() do
+            t[i] = total
+            i = i + 1
+        end
+        pfile:close()
+        return t
+    end
+
 
     template.render("view.html", {
+        local_total = total_files_dir( data_dir ),
         local_uri = request_uri,
         local_path = path_uri,
         local_files = files,
