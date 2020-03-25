@@ -16,7 +16,7 @@ function write_hotmixes()
     -- we want to know if something is an image
     function match_image( file )
         local filext = file:match("[^.]+$")
-        local extensions = {jpg=true, JPG=true, jpeg=true, JPEG=true, png=true, PNG=true}
+        local extensions = {jpg=true, JPG=true, jpeg=true, JPEG=true, png=true, PNG=true, gif=true, GIF=true}
 
         if extensions[filext] then
             return true
