@@ -68,7 +68,7 @@ function write_hotmixes()
     end
 
     local path_uri = '/mixes' .. request_uri
-    
+
     function total_files_dir( path )
         local i, t, popen = 0, {}, io.popen
         local pfile = popen('find "'..path..'" -type f | wc -l')
@@ -78,6 +78,17 @@ function write_hotmixes()
         end
         pfile:close()
         return t
+    end
+
+    function match_image( file )
+        local filext = file:match("[^.]+$")
+        local extensions = {jpg=true, JPG=true, jpeg=true, JPEG=true, png=true, PNG=true}
+
+        if extensions[filext] then
+            return true
+        else
+            return false
+        end
     end
 
 

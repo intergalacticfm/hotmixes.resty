@@ -7,10 +7,17 @@
 {% end %}
     <br>
 {% for i, file in ipairs(local_files) do %}
-    <a class="amixlink" href="{{ local_path .. file }}">
-        <span class="mixlink">{{ file }}</span>
-    </a>
-    </br>
+    {% if match_image( file ) then %}
+        <a href="{{ local_path .. file }}">
+            <img src="{{ local_path .. file }}" width="40%">
+        </a>
+        </br>
+    {% else %}
+        <a class="amixlink" href="{{ local_path .. file }}">
+            <span class="mixlink">{{ file }}</span>
+        </a>
+        </br>
+    {% end %}
 {% end %}
 </div>
 
