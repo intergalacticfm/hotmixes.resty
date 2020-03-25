@@ -2,7 +2,7 @@ function write_hotmixes()
     local lfs = require 'lfs_ffi'
     local template = require "resty.template"
 
-    local files, dirs = {}, {}
+    local files, dirs, images = {}, {}, {}
     local request_uri = ngx.var.request_uri
     request_uri = ngx.unescape_uri(request_uri)
 
@@ -12,6 +12,18 @@ function write_hotmixes()
 
     local data_dir = '/mnt/mixes'
     local path = data_dir .. request_uri
+
+    -- we want to know if something is an image
+    function match_image( file )
+        local filext = file:match("[^.]+$")
+        local extensions = {jpg=true, JPG=true, jpeg=true, JPEG=true, png=true, PNG=true}
+
+        if extensions[filext] then
+            return true
+        else
+            return false
+        end
+    end
 
     -- lfs.dir() doesn't work, so we use this function to list contents of a path
     function scandir(directory)
@@ -27,7 +39,11 @@ function write_hotmixes()
 
     for i, file in ipairs( scandir( path ) ) do
         if lfs.attributes( path .. file,"mode" ) == "file" then
-            table.insert( files, file )
+            if match_image( file ) then
+                table.insert( images, file )
+            else
+                table.insert( files, file )
+            end
         elseif lfs.attributes( path .. file,"mode" ) == "directory" then
             table.insert( dirs, file )
         end
@@ -80,24 +96,13 @@ function write_hotmixes()
         return t
     end
 
-    function match_image( file )
-        local filext = file:match("[^.]+$")
-        local extensions = {jpg=true, JPG=true, jpeg=true, JPEG=true, png=true, PNG=true}
-
-        if extensions[filext] then
-            return true
-        else
-            return false
-        end
-    end
-
-
     template.render("view.html", {
         local_total = total_files_dir( data_dir ),
         local_uri = request_uri,
         local_path = path_uri,
         local_files = files,
         local_dirs = dirs,
+        local_images = images,
         local_latestpath = latest_path,
         local_latestname = latest_name
     })

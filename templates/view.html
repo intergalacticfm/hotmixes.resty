@@ -1,23 +1,26 @@
 {(head.html)}
 <div class="all_files">
+
+    <div class="image_collage">
+{% for i, image in ipairs(local_images) do %}
+        <a href="{{ local_path .. image }}">
+            <img src="{{ local_path .. image }}" width="40%">
+        </a>
+{% end %}
+    </div>
+
 {% for i, dir in ipairs(local_dirs) do %}
     <br>
         <a href="{{ local_uri .. dir }}" class="djsection"><span>{{ dir }}</span></a>
     <br>
 {% end %}
     <br>
+
 {% for i, file in ipairs(local_files) do %}
-    {% if match_image( file ) then %}
-        <a href="{{ local_path .. file }}">
-            <img src="{{ local_path .. file }}" width="40%">
-        </a>
-        </br>
-    {% else %}
-        <a class="amixlink" href="{{ local_path .. file }}">
-            <span class="mixlink">{{ file }}</span>
-        </a>
-        </br>
-    {% end %}
+    <a class="amixlink" href="{{ local_path .. file }}">
+        <span class="mixlink">{{ file }}</span>
+    </a>
+    </br>
 {% end %}
 </div>
 
