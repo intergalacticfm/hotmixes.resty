@@ -147,17 +147,23 @@
 }
 
 .djsection
-{   font-family: staatliches;
+{
+    font-family: staatliches;
     font-size: 33px;
     color: e2001a;
     line-height: 1em;
     margin-bottom: 0px;
     margin-top: 0px;
-    padding-top: 0px;
-    padding-bottom: 0px;
-
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 5px;
 }
 
+.djsection:hover
+{
+    background-color: #000;
+}
 
 .h2
 {
