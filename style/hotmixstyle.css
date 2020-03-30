@@ -379,6 +379,11 @@
     float: left;
 }
 
+.linkimg:hover
+{
+    filter: invert(70%);
+}
+
 @media (max-width:499px)
 {
     .djsectionmenu500
