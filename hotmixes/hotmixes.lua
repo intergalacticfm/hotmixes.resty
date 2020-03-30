@@ -96,16 +96,28 @@ function write_hotmixes()
         return t
     end
 
-    template.render("view.html", {
-        local_total = total_files_dir( data_dir ),
-        local_uri = request_uri,
-        local_path = path_uri,
-        local_files = files,
-        local_dirs = dirs,
-        local_images = images,
-        local_latestpath = latest_path,
-        local_latestname = latest_name
-    })
+    if request_uri == '/' then
+        template.render("viewroot.html", {
+            local_total = total_files_dir( data_dir ),
+            local_uri = request_uri,
+            local_path = path_uri,
+            local_dirs = dirs,
+            local_images = images,
+            local_latestpath = latest_path,
+            local_latestname = latest_name
+        })
+    else
+        template.render("view.html", {
+            local_total = total_files_dir( data_dir ),
+            local_uri = request_uri,
+            local_path = path_uri,
+            local_files = files,
+            local_dirs = dirs,
+            local_images = images,
+            local_latestpath = latest_path,
+            local_latestname = latest_name
+        })
+    end
 end
 
 return write_hotmixes
