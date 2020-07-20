@@ -8,6 +8,7 @@ services:
         ports:
             - "8080:8080"
         volumes:
-            - ~/Music:/mnt/mixes:ro
+            - ~/Music/sets:/mnt/mixes:ro
+            - ~/Music/samples:/mnt/samples:ro
         tmpfs:
             - /tmp

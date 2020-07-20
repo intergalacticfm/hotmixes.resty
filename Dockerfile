@@ -13,6 +13,7 @@ WORKDIR /app
 COPY templates /app/templates
 COPY style /app/style
 COPY img /app/img
+COPY js /app/js
 COPY hotmixes /app/hotmixes
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
