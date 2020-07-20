@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
     browser = navigator.userAgent.toLowerCase();
 
     u("img.preview-icon").on('mouseenter', function (e) {
-        let mixLink = u(this).parent('div.mix-holder').find('a.amixlink').attr('href');
+        let mixLink = u(this).siblings('a.amixlink').attr('href');
         console.log("mixlink: "+mixLink);
         let mixId = getMixId(mixLink);
         let samplesLink = getSamplesLink(mixLink);
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     u("img.preview-icon").on('mouseleave', function (e) {
-        let mixLink = u(this).parent('div.mix-holder').find('a.amixlink').attr('href');
+        let mixLink = u(this).siblings('a.amixlink').attr('href');
         let mixId = getMixId(mixLink);
         u("#" + mixId).remove();
     });

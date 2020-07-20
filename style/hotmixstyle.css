@@ -395,6 +395,7 @@ a.tooltip{
     position: relative;
     display: inline;
 }
+
 a.tooltip:after{
     display: block;
     visibility: hidden;
