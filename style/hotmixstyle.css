@@ -91,6 +91,12 @@
     padding-top: 10px;
 }
 
+img.preview-icon {
+    width: 30px;
+    margin: 0;
+    padding: 0;
+}
+
 .h2
 {
     font-family: Staatliches;

@@ -2,26 +2,29 @@
 <div class="all_files">
 
     <div class="image_collage">
-{% for i, image in ipairs(local_images) do %}
+        {% for i, image in ipairs(local_images) do %}
         <a href="{{ local_path .. image }}">
             <img src="{{ local_path .. image }}">
         </a>
-{% end %}
+        {% end %}
     </div>
 
-{% for i, dir in ipairs(local_dirs) do %}
+    {% for i, dir in ipairs(local_dirs) do %}
     <br>
-        <a href="{{ local_uri .. dir }}" class="djsection"><span>{{ dir }}</span></a>
+    <a href="{{ local_uri .. dir }}" class="djsection"><span>{{ dir }}</span></a>
     <br>
-{% end %}
+    {% end %}
     <br>
 
-{% for i, file in ipairs(local_files) do %}
-    <a class="amixlink tooltip right animate" data-tool="Previewing" href="{{ local_path .. file }}">
-        <span>{{ file }}</span>
-    </a>
+    {% for i, file in ipairs(local_files) do %}
+    <div class="mix-holder">
+        <a href="#" class="tooltip right animate" data-tool="Previewing"><img src="/img/music-player.svg" class="preview-icon"/></a>
+        <a class="amixlink "href="{{ local_path .. file }}">
+            <span>{{ file }}</span>
+        </a>
+    </div>
     </br>
-{% end %}
+    {% end %}
 </div>
 
 <section class="latest">
@@ -29,12 +32,15 @@
         <br>
         <br>
         <h1 class="h1">Our latest uploads:</h1>
-    {% for i, file in ipairs(local_latestpath) do %}
-        <a class="amixlink tooltip right animate" data-tool="Previewing" href="{{ '/mixes/' .. file }}">
-            <span class="mixlink">{{ local_latestname[i] }}</span>
-        </a>
+        {% for i, file in ipairs(local_latestpath) do %}
+        <div class="mix-holder">
+            <a href="#" class="tooltip right animate" data-tool="Previewing"><img src="/img/music-player.svg" class="preview-icon"/></a>
+            <a class="amixlink tooltip right animate" data-tool="Previewing" href="{{ '/mixes/' .. file }}">
+                <span class="mixlink">{{ local_latestname[i] }}</span>
+            </a>
+        </div>
         </br>
-    {% end %}
+        {% end %}
     </div>
 </section>
 {(foot.html)}
