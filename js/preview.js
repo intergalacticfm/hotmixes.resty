@@ -11,7 +11,7 @@ function getSamplesLink(mixLink) {
 document.addEventListener('DOMContentLoaded', function () {
     browser = navigator.userAgent.toLowerCase();
 
-    u("button.preview").on('mousedown', function (e) {
+    u("button.preview").on(['mousedown', 'touchstart'], function (e) {
         let samplesLink = getSamplesLink(u(this).siblings('a.amixlink').attr('href'));
         preview = new Howl({
             src: [samplesLink],
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     });
 
-    u("button.preview").on('mouseup', function (e) {
+    u("button.preview").on(['mouseup', 'touchend'], function (e) {
         preview.stop();
     });
 });
