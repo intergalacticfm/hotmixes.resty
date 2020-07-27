@@ -12,11 +12,16 @@ document.addEventListener('DOMContentLoaded', function () {
     browser = navigator.userAgent.toLowerCase();
 
     u("img.preview-icon").on('mouseenter', function (e) {
-        let samplesLink = getSamplesLink(u(this).siblings('a.amixlink').attr('href'));
+       let samplesLink = getSamplesLink(u(this).siblings('a.amixlink').attr('href'));
        preview = new Howl({
-            src: [samplesLink]
-        });
-        preview.play()
+           src: [samplesLink],
+           autoplay: true,
+           volume: 0
+       });
+
+       preview.play();
+       preview.fade(0,1,5000);
+
     });
 
     u("img.preview-icon").on('mouseleave', function (e) {
