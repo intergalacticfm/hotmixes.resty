@@ -18,9 +18,10 @@
 
     {% for i, file in ipairs(local_files) do %}
     <div class="mix-holder">
-<!--        <a href="#" class="tooltip right animate" data-tool="Previewing"><img src="/img/music-player.svg" class="preview-icon"/></a>-->
-        <img src="/img/music-player.svg" class="preview-icon"/>
-        <a class="amixlink "href="{{ local_path .. file }}">
+        <!--        <a href="#" class="tooltip right animate" data-tool="Previewing"><img src="/img/music-player.svg" class="preview-icon"/></a>-->
+        <button class='button play preview'></button>
+
+        <a class="amixlink " href="{{ local_path .. file }}">
             <span class="mixlink">{{ file }}</span>
         </a>
     </div>
@@ -35,7 +36,7 @@
         <h1 class="h1">Our latest uploads:</h1>
         {% for i, file in ipairs(local_latestpath) do %}
         <div class="mix-holder">
-            <img src="/img/music-player.svg" class="preview-icon"/>
+            <button class='button play preview'></button>
             <a class="amixlink" data-tool="Previewing" href="{{ '/mixes/' .. file }}">
                 <span class="mixlink">{{ local_latestname[i] }}</span>
             </a>

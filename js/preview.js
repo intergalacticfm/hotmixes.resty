@@ -11,20 +11,20 @@ function getSamplesLink(mixLink) {
 document.addEventListener('DOMContentLoaded', function () {
     browser = navigator.userAgent.toLowerCase();
 
-    u("img.preview-icon").on('mouseenter', function (e) {
-       let samplesLink = getSamplesLink(u(this).siblings('a.amixlink').attr('href'));
-       preview = new Howl({
-           src: [samplesLink],
-           autoplay: true,
-           volume: 0
-       });
+    u("button.preview").on('mousedown', function (e) {
+        let samplesLink = getSamplesLink(u(this).siblings('a.amixlink').attr('href'));
+        preview = new Howl({
+            src: [samplesLink],
+            autoplay: true,
+            volume: 0
+        });
 
-       preview.play();
-       preview.fade(0,1,5000);
+        preview.play();
+        preview.fade(0, 1, 5000);
 
     });
 
-    u("img.preview-icon").on('mouseleave', function (e) {
+    u("button.preview").on('mouseup', function (e) {
         preview.stop();
     });
 });
