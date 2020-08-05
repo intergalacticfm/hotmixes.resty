@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
         preview = new Howl({
             src: [samplesLink],
             autoplay: true,
-            volume: 0
+            volume: 0.1
         });
 
         preview.play();
