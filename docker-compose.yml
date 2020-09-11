@@ -1,22 +1,28 @@
-version: '2'
+version: "3.3"
+
 services:
-    nginx:
-        build: .
-        restart: unless-stopped
-        ports:
-            - "80:80"
-            - "443:443"
-        volumes:
-            - /media/music:/mnt/mixes:ro
-            - ./data/certbot/conf:/etc/letsencrypt
-            - ./data/certbot/www:/var/www/certbot
-        tmpfs:
-            - /tmp
-        command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
-    certbot:
-        image: certbot/certbot:v0.36.0
-        restart: unless-stopped
-        volumes:
-            - ./data/certbot/conf:/etc/letsencrypt
-            - ./data/certbot/www:/var/www/certbot
-        entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+  nginx:
+    build: .
+    container_name: hotmixes
+    networks:
+      - web
+    volumes:
+      - /media/music:/mnt/mixes:ro
+    tmpfs:
+      - /tmp
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.hotmixes.rule=Host(`hotmixes.net`)
+      - traefik.http.routers.hotmixes.entrypoints=web
+      - traefik.http.routers.hotmixes.middlewares=redirect-https-hotmixes
+      - traefik.http.middlewares.redirect-https-hotmixes.redirectscheme.scheme=https
+
+      - traefik.http.routers.hotmixes_ssl.rule=Host(`hotmixes.net`)
+      - traefik.http.routers.hotmixes_ssl.entrypoints=websecure
+      - traefik.http.routers.hotmixes_ssl.tls.certresolver=myresolver
+
+      - traefik.http.services.hotmixes.loadbalancer.server.port=80
+
+networks:
+  web:
+    external: true
