@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<rss version="2.0">
+
+<channel>
+    <title>Hotmixes</title>
+    <link>https://hotmixes.net</link>
+    <description>Our Latest Uploads</description>
+    {% for i, file in ipairs(local_latestpath) do %}
+    <item>
+        <title>{{ local_latestname[i] }}</title>
+        <link>{{ 'https://hotmixes.net/mixes/' .. file }}</link>
+        <description>{{ local_latestname[i] }}</description>
+    </item>
+    {% end %}
+</channel>
+
+</rss>
