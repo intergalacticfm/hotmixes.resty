@@ -1,20 +1,22 @@
-function write_hotmixes()
+local function write_hotmixes()
     local lfs = require 'lfs_ffi'
     local template = require "resty.template"
 
-    local files, dirs, images = {}, {}, {}
     local request_uri = ngx.var.request_uri
     request_uri = ngx.unescape_uri(request_uri)
 
+    local request_path
     if request_uri ~= '/' then
-        request_uri = request_uri .. '/'
+        request_path = request_uri .. '/'
+    else
+        request_path = request_uri
     end
 
     local data_dir = '/mnt/mixes'
-    local path = data_dir .. request_uri
+    local data_path = data_dir .. request_path
 
     -- we want to know if something is an image
-    function match_image( file )
+    local function match_image( file )
         local filext = file:match("[^.]+$")
         local extensions = {jpg=true, jpeg=true, png=true, gif=true}
 
@@ -25,8 +27,7 @@ function write_hotmixes()
         end
     end
 
-    -- lfs.dir() doesn't work, so we use this function to list contents of a path
-    function scandir(directory)
+    local function scandir(directory)
         local i, t, popen = 0, {}, io.popen
         local pfile = popen('ls "'..directory..'" -I "*.filepart"')
         for filename in pfile:lines() do
@@ -37,20 +38,7 @@ function write_hotmixes()
         return t
     end
 
-    for i, file in ipairs( scandir( path ) ) do
-        if lfs.attributes( path .. file,"mode" ) == "file" then
-            if match_image( file ) then
-                table.insert( images, file )
-            else
-                table.insert( files, file )
-            end
-        elseif lfs.attributes( path .. file,"mode" ) == "directory" then
-            table.insert( dirs, file )
-        end
-    end
-
-    -- list last 10 modified files in our directory
-    function latest_files(directory)
+    local function latest_files(directory)
         local i, t, popen = 0, {}, io.popen
         local pfile = popen('find "'..directory..'" -type f ! -name \'*.filepart\' -printf \'%C@ %p\n\'| sort -n -r | head -10 | cut -f2- -d" "| sed s:"'..directory..'/"::')
         for filename in pfile:lines() do
@@ -61,31 +49,59 @@ function write_hotmixes()
         return t
     end
 
-    local latest_path, latest_name = {}, {}
+    local function these_files( path )
+        local files, dirs, images = {}, {}, {}
+        -- lfs.dir() doesn't work, so we use this function to list contents of a data_path
 
-    for i, file_path in ipairs( latest_files( data_dir ) ) do
-        table.insert( latest_path, file_path )
-
-        local temp = ""
-        local result = ""
-        for i = file_path:len(), 1, -1 do
-            if file_path:sub(i,i) ~= "/" then
-                temp = temp..file_path:sub(i,i)
-            else
-                break
+        for i, file in ipairs( scandir( path ) ) do
+            if lfs.attributes( path .. file,"mode" ) == "file" then
+                if match_image( file ) then
+                    table.insert( images, file )
+                else
+                    table.insert( files, file )
+                end
+            elseif lfs.attributes( path .. file,"mode" ) == "directory" then
+                table.insert( dirs, file )
             end
         end
-
-        for j = temp:len(), 1, -1 do
-            result = result..temp:sub(j,j)
-        end
-
-        table.insert( latest_name, result )
+        local stuff = {
+            files = files,
+            dirs = dirs,
+            images = images
+        }
+        return stuff
     end
 
-    local path_uri = '/mixes' .. request_uri
+    local function these_latest()
+        -- list last 10 modified files in our directory
+        local latest_path, latest_name = {}, {}
 
-    function total_files_dir( path )
+        for i, file_path in ipairs( latest_files( data_dir ) ) do
+            table.insert( latest_path, file_path )
+
+            local temp = ""
+            local result = ""
+            for i = file_path:len(), 1, -1 do
+                if file_path:sub(i,i) ~= "/" then
+                    temp = temp..file_path:sub(i,i)
+                else
+                    break
+                end
+            end
+
+            for j = temp:len(), 1, -1 do
+                result = result..temp:sub(j,j)
+            end
+
+            table.insert( latest_name, result )
+        end
+
+        return latest_path, latest_name
+    end
+
+    local path_uri = '/mixes' .. request_path
+
+    local function total_files_dir( path )
         local i, t, popen = 0, {}, io.popen
         local pfile = popen('find "'..path..'" -type f | wc -l')
         for total in pfile:lines() do
@@ -96,24 +112,34 @@ function write_hotmixes()
         return t
     end
 
-    if request_uri == '/' then
+    local latest_path, latest_name = these_latest()
+
+    if request_uri == '/latest.xml' then
+        template.render("latest.xml", {
+            local_total = total_files_dir( data_dir ),
+            local_latestpath = latest_path,
+            local_latestname = latest_name
+        })
+    elseif request_uri == '/' then
+        local stuff = these_files( data_path )
         template.render("viewroot.html", {
             local_total = total_files_dir( data_dir ),
-            local_uri = request_uri,
+            local_uri = request_path,
             local_path = path_uri,
-            local_dirs = dirs,
-            local_images = images,
+            local_dirs = stuff["dirs"],
+            local_images = stuff["images"],
             local_latestpath = latest_path,
             local_latestname = latest_name
         })
     else
+        local stuff = these_files( data_path )
         template.render("view.html", {
             local_total = total_files_dir( data_dir ),
-            local_uri = request_uri,
+            local_uri = request_path,
             local_path = path_uri,
-            local_files = files,
-            local_dirs = dirs,
-            local_images = images,
+            local_files = stuff["files"],
+            local_dirs = stuff["dirs"],
+            local_images = stuff["images"],
             local_latestpath = latest_path,
             local_latestname = latest_name
         })
