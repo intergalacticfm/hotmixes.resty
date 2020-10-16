@@ -10,6 +10,7 @@
         <title>{{ local_latestname[i] }}</title>
         <link>{{ 'https://hotmixes.net/mixes/' .. file }}</link>
         <description>{{ local_latestname[i] }}</description>
+        <guid>{{ 'https://hotmixes.net/mixes/' .. file }}</guid>
     </item>
     {% end %}
 </channel>
