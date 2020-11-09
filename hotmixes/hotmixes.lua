@@ -27,6 +27,18 @@ local function write_hotmixes()
         end
     end
 
+    -- we want to know if something is an video file
+    local function match_video( file )
+        local filext = file:match("[^.]+$")
+        local extensions = {mp4=true}
+
+        if extensions[filext:lower()] then
+            return true
+        else
+            return false
+        end
+    end
+
     local function scandir(directory)
         local i, t, popen = 0, {}, io.popen
         local pfile = popen('ls "'..directory..'" -I "*.filepart"')
@@ -129,7 +141,8 @@ local function write_hotmixes()
             local_dirs = stuff["dirs"],
             local_images = stuff["images"],
             local_latestpath = latest_path,
-            local_latestname = latest_name
+            local_latestname = latest_name,
+            match_video = match_video
         })
     else
         local stuff = these_files( data_path )
@@ -141,7 +154,8 @@ local function write_hotmixes()
             local_dirs = stuff["dirs"],
             local_images = stuff["images"],
             local_latestpath = latest_path,
-            local_latestname = latest_name
+            local_latestname = latest_name,
+            match_video = match_video
         })
     end
 end
