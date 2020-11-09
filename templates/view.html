@@ -18,9 +18,9 @@
 
 {% for i, file in ipairs(local_files) do %}
     {% if match_video(file) then %}
-        <a class="amixlink amixlinkvideo" href="{{ '/mixes/' .. file }}">
+        <a class="amixlinkvideo" href="{{ local_path .. file }}">
     {% else %}
-        <a class="amixlink" href="{{ '/mixes/' .. file }}">
+        <a class="amixlink" href="{{ local_path .. file }}">
     {% end %}
         <span class="mixlink">{{ file }}</span>
     </a>
@@ -35,7 +35,7 @@
         <h1 class="h1">Our latest uploads:</h1>
     {% for i, file in ipairs(local_latestpath) do %}
         {% if match_video(file) then %}
-            <a class="amixlink amixlinkvideo" href="{{ '/mixes/' .. file }}">
+            <a class="amixlinkvideo" href="{{ '/mixes/' .. file }}">
         {% else %}
             <a class="amixlink" href="{{ '/mixes/' .. file }}">
         {% end %}

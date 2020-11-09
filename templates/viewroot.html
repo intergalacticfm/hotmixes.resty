@@ -16,7 +16,11 @@
         <br>
         <h1 class="h1">Our latest uploads:</h1>
     {% for i, file in ipairs(local_latestpath) do %}
-        <a class="amixlink" href="{{ '/mixes/' .. file }}">
+        {% if match_video(file) then %}
+            <a class="amixlinkvideo" href="{{ '/mixes/' .. file }}">
+        {% else %}
+            <a class="amixlink" href="{{ '/mixes/' .. file }}">
+        {% end %}
             <span class="mixlink">{{ local_latestname[i] }}</span>
         </a>
         </br>
