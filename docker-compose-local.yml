@@ -8,6 +8,10 @@ services:
         ports:
             - "8080:8080"
         volumes:
-            - ~/Music:/mnt/mixes:ro
+            - ~/Music/alfa:/mnt/mixes:ro
+            - ./templates:/app/templates
+            - ./style:/app/style
+            - ./img:/app/img
+            - ./hotmixes:/app/hotmixes
         tmpfs:
             - /tmp
