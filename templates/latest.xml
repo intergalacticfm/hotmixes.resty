@@ -5,7 +5,7 @@
     <atom:link href="https://hotmixes.net/latest.xml" rel="self" type="application/rss+xml" />
     <title>Hotmixes</title>
     <link>https://hotmixes.net</link>
-    <description>Our Latest Uploads</description>
+    <description>Latest uploads</description>
     {% for i, file in ipairs(local_latestpath) do %}
     <item>
         <title>{{ local_latestname[i] }}</title>
