@@ -40,7 +40,7 @@ local function write_hotmixes()
 
     local function latest_files(directory)
         local i, t, popen = 0, {}, io.popen
-        local pfile = popen('find "'..directory..'" -type f ! -name \'*.filepart\' -printf \'%C@ %p\n\'| sort -n -r | head -7 | cut -f2- -d" "| sed s:"'..directory..'/"::')
+        local pfile = popen('find "'..directory..'" -type f ! -name \'*.filepart\' -printf \'%C@ %p\n\'| sort -nr | head -7 | cut -f2- -d" "| sed s:"'..directory..'/"::')
         for filename in pfile:lines() do
             i = i + 1
             t[i] = filename

@@ -1,12 +1,34 @@
-To test: modify docker-compose-local.yml to your own local music dir
+# Summary
 
-# build and run container
+This repository is an OpenResty Docker container which offers a website with a
+fancy index for files. The production version is found at https://hotmixes.net
+where mainly MP3 files are offered.
 
-docker-compose -f docker-compose-local.yml up --build
+# Prerequisists
 
-# access container
+Install `docker-compose`, e.g. with
 
-http://localhost:8080
+    sudo apt-get install docker-compose
+
+# Configuration
+
+For testing, modify `docker-compose-local.yml` to find MP3 files on your local
+machine. Alternatively, create a directory `~/Music/alfa` with subdirectores
+starting with only lower case `a` until `z` and a directory which is named
+`0-9`. In those directories, place some MP3 files. Test directories can be
+created with
+
+    mkdir 0-9; for i in {a..z}; do mkdir $i; done
+
+# Build and run
+
+The local container is build and run with
+
+    docker-compose -f docker-compose-local.yml up --build
+
+# Access
+
+The website offered by the local container is at http://localhost:8080
 
 # Validation
 

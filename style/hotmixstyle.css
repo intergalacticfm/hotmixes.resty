@@ -13,7 +13,7 @@
 
 .p
 {
-    font-family: helvetica;
+    font-family: Helvetica;
     color: #7e7e7e;
     margin-bottom: 45px;
     font-size: 10px;
@@ -21,7 +21,7 @@
 
 .href
 {
-    font-family: helvetica;
+    font-family: Helvetica;
     text-decoration: none;
 }
 
@@ -32,12 +32,12 @@
     font-size: 14px;
     margin-bottom: 0;
     margin-top: 0;
-    font-family: helvetica, arial, san serif;
+    font-family: Helvetica, Arial, sans-serif;
 }
 
 .amixlink
 {
-    font-family: helvetica;
+    font-family: Helvetica;
     color: #9d9d9d;
     line-height: 1.6em;
     font-weight: 600;
@@ -53,7 +53,7 @@
 
 .amixlink:hover
 {
-    font-family: helvetica;
+    font-family: Helvetica;
     color: #000;
     line-height: 1.6em;
     font-weight: 600;
@@ -71,7 +71,7 @@
 
 .mixsections
 {
-    font-family: staatliches;
+    font-family: Staatliches;
     font-weight: 900;
     font-size: 16px;
     color: #787878;
@@ -119,7 +119,7 @@
 
 .djsection
 {
-    font-family: staatliches;
+    font-family: Staatliches;
     font-size: 18px;
     text-decoration: inherit;
     color: #e2001a;
@@ -127,7 +127,7 @@
 
 .djsectionmenu
 {
-    font-family: staatliches;
+    font-family: Staatliches;
     font-size: 33px;
     color: #e2001a;
     line-height: 1em;
@@ -148,7 +148,7 @@
 
 .djsection
 {
-    font-family: staatliches;
+    font-family: Staatliches;
     font-size: 33px;
     color: e2001a;
     line-height: 1em;
@@ -167,7 +167,7 @@
 
 .h2
 {
-    font-family: staatliches;
+    font-family: Staatliches;
     color: #e2001a;
     font-size: 24px;
     padding-top: 5px;

@@ -1,5 +1,5 @@
 [Unit]
-Description=hotmixes service with docker compose
+Description=Hotmixes service with docker compose
 Requires=docker.service
 After=docker.service
 
