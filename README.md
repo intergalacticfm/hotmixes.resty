@@ -1,7 +1,8 @@
 # Summary
 
-This repository is a resty Docker container which offers a website with music
-sets. The production version is found at https://hotmixes.net/
+This repository is an OpenResty Docker container which offers a website with a
+fancy index for files. The production version is found at https://hotmixes.net
+where mainly MP3 files are offered.
 
 # Prerequisists
 
@@ -12,8 +13,11 @@ Install `docker-compose`, e.g. with
 # Configuration
 
 For testing, modify `docker-compose-local.yml` to find MP3 files on your local
-machine. Alternatively, create a directoru `~/Music/alfa` with subdirectores
-holding MP3 files.
+machine. Alternatively, create a directory `~/Music/alfa` with subdirectores
+starting with only lower case `a` until `z` or is names `0-9`. In those
+directories, place some MP3 files. Test directories can be created with
+
+    mkdir 0-9; for i in {a..z}; do mkdir $i; done
 
 # Build and run
 
