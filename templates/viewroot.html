@@ -4,7 +4,7 @@
 {% for i, dir in ipairs(local_dirs) do %}
     <a href="{{ local_uri .. dir }}" class="djsectionmenu">
         <div class="alphabetpanel">
-            <img src="/img/letters/{{ dir:upper() }}@300.png" class="alphabetimg alphabetimg500" />
+            <img src="/img/letters/{{ dir:upper() }}@300.png" alt= "Logo first letter filename {{ dir:upper() }}" class="alphabetimg alphabetimg500" />
         </div>
     </a>
 {% end %}
@@ -19,7 +19,7 @@
         <a class="amixlink" href="{{ '/mixes/' .. file }}">
             <span class="mixlink">{{ local_latestname[i] }}</span>
         </a>
-        </br>
+        <br>
     {% end %}
     </div>
 </section>
