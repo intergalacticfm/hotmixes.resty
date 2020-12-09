@@ -1,4 +1,4 @@
-FROM openresty/openresty:1.15.8.2-7-alpine-fat
+FROM openresty/openresty:1.19.3.1-1-alpine-fat
 
 RUN apk add openssl-dev git
 RUN apk add --no-cache curl perl

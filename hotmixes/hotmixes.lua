@@ -4,6 +4,14 @@ local function write_hotmixes()
 
     local request_uri = ngx.var.request_uri
     request_uri = ngx.unescape_uri(request_uri)
+    ngx.log(ngx.ERR, request_uri)
+
+    if string.find(request_uri, "\"") or string.find(request_uri, "%`") or string.find(request_uri, "%$") then
+        ngx.log(ngx.ERR, "OH NOES!")
+        ngx.exit(500)
+    -- else
+    --     ngx.log(ngx.ERR, "pfew")
+    end
 
     local request_path
     if request_uri ~= '/' then
@@ -54,13 +62,13 @@ local function write_hotmixes()
         -- lfs.dir() doesn't work, so we use this function to list contents of a data_path
 
         for i, file in ipairs( scandir( path ) ) do
-            if lfs.attributes( path .. file,"mode" ) == "file" then
+            if lfs.attributes( path .. file, "mode" ) == "file" then
                 if match_image( file ) then
                     table.insert( images, file )
                 else
                     table.insert( files, file )
                 end
-            elseif lfs.attributes( path .. file,"mode" ) == "directory" then
+            elseif lfs.attributes( path .. file, "mode" ) == "directory" then
                 table.insert( dirs, file )
             end
         end
