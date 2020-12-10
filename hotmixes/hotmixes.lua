@@ -35,17 +35,6 @@ local function write_hotmixes()
         end
     end
 
-    local function scandir(directory)
-        local i, t, popen = 0, {}, io.popen
-        local pfile = popen('ls "'..directory..'" -I "*.filepart"')
-        for filename in pfile:lines() do
-            i = i + 1
-            t[i] = filename
-        end
-        pfile:close()
-        return t
-    end
-
     local function latest_files(directory)
         local i, t, popen = 0, {}, io.popen
         local pfile = popen('find "'..directory..'" -type f ! -name \'*.filepart\' -printf \'%C@ %p\n\'| sort -nr | head -7 | cut -f2- -d" "| sed s:"'..directory..'/"::')
@@ -59,19 +48,24 @@ local function write_hotmixes()
 
     local function these_files( path )
         local files, dirs, images = {}, {}, {}
-        -- lfs.dir() doesn't work, so we use this function to list contents of a data_path
-
-        for i, file in ipairs( scandir( path ) ) do
-            if lfs.attributes( path .. file, "mode" ) == "file" then
-                if match_image( file ) then
-                    table.insert( images, file )
-                else
-                    table.insert( files, file )
+        for file in lfs.dir( path ) do
+            if file ~= "." and file ~= ".." and not string.match(file, ".filepart") then
+                if lfs.attributes( path .. file, "mode" ) == "file" then
+                    if match_image( file ) then
+                        table.insert( images, file )
+                    else
+                        table.insert( files, file )
+                    end
+                elseif lfs.attributes( path .. file, "mode" ) == "directory" then
+                    table.insert( dirs, file )
                 end
-            elseif lfs.attributes( path .. file, "mode" ) == "directory" then
-                table.insert( dirs, file )
             end
         end
+
+        table.sort( images )
+        table.sort( files )
+        table.sort( dirs )
+
         local stuff = {
             files = files,
             dirs = dirs,
