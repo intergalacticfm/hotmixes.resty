@@ -74,6 +74,37 @@ local function write_hotmixes()
         return stuff
     end
 
+    local function these_search( path, search )
+        local files, dirs, images = {}, {}, {}
+
+        ngx.log(ngx.ERR, "search: " .. string.match(path,   "/search/(.*)"))
+        --
+        --for file in lfs.dir( path ) do
+        --    if file ~= "." and file ~= ".." and not string.match(file, ".filepart") then
+        --        if lfs.attributes( path .. file, "mode" ) == "file" then
+        --            if match_image( file ) then
+        --                table.insert( images, file )
+        --            else
+        --                table.insert( files, file )
+        --            end
+        --        elseif lfs.attributes( path .. file, "mode" ) == "directory" then
+        --            table.insert( dirs, file )
+        --        end
+        --    end
+        --end
+        --
+        --table.sort( images )
+        --table.sort( files )
+        --table.sort( dirs )
+
+        local stuff = {
+            files = files,
+            dirs = dirs,
+            images = images
+        }
+        return stuff
+    end
+
     local function these_latest()
         -- list last 10 modified files in our directory
         local latest_path, latest_name = {}, {}
@@ -101,6 +132,10 @@ local function write_hotmixes()
         return latest_path, latest_name
     end
 
+    local function starts_with(str, start)
+        return str:sub(1, #start) == start
+    end
+
     local path_uri = '/mixes' .. request_path
 
     local function total_files_dir( path )
@@ -114,7 +149,10 @@ local function write_hotmixes()
         return t
     end
 
+
+
     local latest_path, latest_name = these_latest()
+    ngx.log(ngx.ERR, "request_uri: " .. request_uri)
 
     if request_uri == '/latest.xml' then
         template.render("latest.xml", {
@@ -125,6 +163,17 @@ local function write_hotmixes()
     elseif request_uri == '/' then
         local stuff = these_files( data_path )
         template.render("viewroot.html", {
+            local_total = total_files_dir( data_dir ),
+            local_uri = request_path,
+            local_path = path_uri,
+            local_dirs = stuff["dirs"],
+            local_images = stuff["images"],
+            local_latestpath = latest_path,
+            local_latestname = latest_name
+        })
+    elseif starts_with(request_uri,  '/search') then
+        local stuff = these_search( request_uri )
+        template.render("viewsearch.html", {
             local_total = total_files_dir( data_dir ),
             local_uri = request_path,
             local_path = path_uri,
@@ -146,6 +195,9 @@ local function write_hotmixes()
             local_latestname = latest_name
         })
     end
+
+
 end
+
 
 return write_hotmixes
