@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
     browser = navigator.userAgent.toLowerCase();
 
     u("button.preview").on(['mousedown', 'touchstart'], function (e) {
+        u(this).addClass("paused");
         let samplesLink = getSamplesLink(u(this).siblings('a.amixlink').attr('href'));
         preview = new Howl({
             src: [samplesLink],
@@ -25,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     u("button.preview").on(['mouseup', 'touchend'], function (e) {
+        u(this).removeClass("paused");
         preview.stop();
     });
 });
