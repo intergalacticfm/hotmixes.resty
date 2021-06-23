@@ -7,10 +7,8 @@ local function write_hotmixes()
     ngx.log(ngx.ERR, request_uri)
 
     if string.find(request_uri, "\"") or string.find(request_uri, "%`") or string.find(request_uri, "%$") then
-        ngx.log(ngx.ERR, "OH NOES!")
+        ngx.log(ngx.ERR, "Illegal request_uri")
         ngx.exit(500)
-    -- else
-    --     ngx.log(ngx.ERR, "pfew")
     end
 
     local request_path

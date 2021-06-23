@@ -14,11 +14,11 @@ Install `docker-compose`, e.g. with
 
 For testing, modify `docker-compose-local.yml` to find MP3 files on your local
 machine. Alternatively, create a directory `~/Music/alfa` with subdirectores
-starting with only lower case `a` until `z` and a directory which is named
-`0-9`. In those directories, place some MP3 files. Test directories can be
-created with
+starting with only lower case `a` until `z` and `0` until `9`.. In those
+directories, place some MP3 files. Test directories can be created with
 
-    mkdir 0-9; for i in {a..z}; do mkdir $i; done
+    for i in {0..9}; do mkdir $i; done
+    for i in {a..z}; do mkdir $i; done
 
 # Build and run
 
