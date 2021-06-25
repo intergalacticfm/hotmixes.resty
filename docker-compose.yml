@@ -3,7 +3,7 @@ version: "3.3"
 services:
   nginx:
     build: .
-    container_name: hotmixes
+    container_name: hotmixes_v1.0.0
     networks:
       - web
     volumes:
