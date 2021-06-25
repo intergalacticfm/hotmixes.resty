@@ -37,7 +37,7 @@ local function write_hotmixes()
 
     local function latest_files(directory)
         local i, t, popen = 0, {}, io.popen
-        local pfile = popen('find "'..directory..'" -type f ! -name \'*.filepart\' -printf \'%C@ %p\n\'| sort -nr | head -7 | cut -f2- -d" "| sed s:"'..directory..'/"::')
+        local pfile = popen('find "' .. directory .. '" -type f ! -name \'*.filepart\' -printf \'%C@ %p\n\'| sort -nr | head -7 | cut -f2- -d" "| sed s:"' .. directory .. '/"::')
         for filename in pfile:lines() do
             i = i + 1
             t[i] = filename
@@ -46,11 +46,23 @@ local function write_hotmixes()
         return t
     end
 
-    local function these_files( path )
+    local function search_files(directory, searchString)
+        local i, t, popen = 0, {}, io.popen
+        local pfile = popen('find "' .. directory .. '" -type f -name \'*' .. searchString .. '*.mp3\' -printf \'%C@ %p\n\'| sort -nr | head -7 | cut -f2- -d" "| sed s:"' .. directory .. '/"::')
+
+        for filename in pfile:lines() do
+            i = i + 1
+            t[i] = filename
+        end
+        pfile:close()
+        return t
+    end
+
+    local function these_files(path)
         local files, dirs, images = {}, {}, {}
-        for file in lfs.dir( path ) do
+        for file in lfs.dir(path) do
             if file ~= "." and file ~= ".." and not string.match(file, ".filepart") then
-                if lfs.attributes( path .. file, "mode" ) == "file" then
+                if lfs.attributes(path .. file, "mode") == "file" then
                     if match_image( file ) then
                         table.insert( images, file )
                     else
@@ -74,28 +86,33 @@ local function write_hotmixes()
         return stuff
     end
 
-    local function these_search( path, search )
+    local function these_search(directory, request)
         local files, dirs, images = {}, {}, {}
+        local i, t, popen = 0, {}, io.popen
+        local searchString = string.match(request, "/search/(.*)")
+        ngx.log(ngx.ERR, "search: " .. string.match(request, "/search/(.*)"))
+        local pfile = popen('find "' .. directory .. '" -type f -name \'*' .. searchString .. '*.mp3\' -printf \'%C@ %p\n\'| sort -nr | head -7 | cut -f2- -d" "| sed s:"' .. directory .. '/"::')
 
-        ngx.log(ngx.ERR, "search: " .. string.match(path,   "/search/(.*)"))
-        --
-        --for file in lfs.dir( path ) do
-        --    if file ~= "." and file ~= ".." and not string.match(file, ".filepart") then
-        --        if lfs.attributes( path .. file, "mode" ) == "file" then
-        --            if match_image( file ) then
-        --                table.insert( images, file )
-        --            else
-        --                table.insert( files, file )
-        --            end
-        --        elseif lfs.attributes( path .. file, "mode" ) == "directory" then
-        --            table.insert( dirs, file )
-        --        end
-        --    end
-        --end
-        --
-        --table.sort( images )
-        --table.sort( files )
-        --table.sort( dirs )
+        for file in pfile:lines() do
+            ngx.log(ngx.ERR, "file: " .. file)
+
+            --if file ~= "." and file ~= ".." and not string.match(file, ".filepart") then
+            --    if lfs.attributes( path .. file, "mode" ) == "file" then
+            --        if match_image( file ) then
+            --            table.insert( images, file )
+            --        else
+            --            table.insert( files, file )
+            --        end
+            --    elseif lfs.attributes( path .. file, "mode" ) == "directory" then
+            --        table.insert( dirs, file )
+            --    end
+            --end
+        end
+        pfile:close()
+
+        table.sort(images)
+        table.sort(files)
+        table.sort(dirs)
 
         local stuff = {
             files = files,
@@ -106,7 +123,7 @@ local function write_hotmixes()
     end
 
     local function these_latest()
-        -- list last 10 modified files in our directory
+        -- list last 7 modified files in our directory
         local latest_path, latest_name = {}, {}
 
         for i, file_path in ipairs( latest_files( data_dir ) ) do
@@ -172,7 +189,7 @@ local function write_hotmixes()
             local_latestname = latest_name
         })
     elseif starts_with(request_uri,  '/search') then
-        local stuff = these_search( request_uri )
+        local stuff = these_search(data_dir, request_uri)
         template.render("viewsearch.html", {
             local_total = total_files_dir( data_dir ),
             local_uri = request_path,
