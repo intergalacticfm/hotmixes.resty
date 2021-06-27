@@ -45,15 +45,15 @@ local function write_hotmixes()
     end
 
     local function search_files(directory, searchString)
-        local i, t, popen = 0, {}, io.popen
+        local i, filenames, popen = 0, {}, io.popen
         local pfile = popen('find "' .. directory .. '" -type f -name \'*' .. searchString .. '*.mp3\' -printf \'%C@ %p\n\'| sort -nr | head -7 | cut -f2- -d" "| sed s:"' .. directory .. '/"::')
 
         for filename in pfile:lines() do
             i = i + 1
-            t[i] = filename
+            filenames[i] = filename
         end
         pfile:close()
-        return t
+        return filenames
     end
 
     local function these_files(path)
@@ -89,7 +89,7 @@ local function write_hotmixes()
         local i, t, popen = 0, {}, io.popen
         local searchString = string.match(request, "/search/(.*)")
         ngx.log(ngx.ERR, "search: " .. string.match(request, "/search/(.*)"))
-        local pfile = popen('find "' .. directory .. '" -type f -name \'*' .. searchString .. '*.mp3\' -printf \'%C@ %p\n\'| sort -nr | head -7 | cut -f2- -d" "| sed s:"' .. directory .. '/"::')
+        local pfile = popen('find "' .. directory .. '" -type f -iname \'*' .. searchString .. '*.mp3\' -printf \'%C@ %p\n\'| sort -nr | head -7 | cut -f2- -d" "| sed s:"' .. directory .. '/"::')
 
         for file in pfile:lines() do
             ngx.log(ngx.ERR, "file: " .. file)
