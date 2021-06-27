@@ -3,7 +3,7 @@ version: "3.3"
 services:
   nginx:
     build: .
-    container_name: hotmixes
+    container_name: hotmixes_v1.1.0-SNAPSHOT
     networks:
       - web
     volumes:
@@ -12,12 +12,12 @@ services:
       - /tmp
     labels:
       - traefik.enable=true
-      - traefik.http.routers.hotmixes.rule=Host(`hotmixes.net`)
+      - traefik.http.routers.hotmixes.rule=Host(`hotmixes.net`) || Host(`www.hotmixes.net`)
       - traefik.http.routers.hotmixes.entrypoints=web
       - traefik.http.routers.hotmixes.middlewares=redirect-https-hotmixes
       - traefik.http.middlewares.redirect-https-hotmixes.redirectscheme.scheme=https
 
-      - traefik.http.routers.hotmixes_ssl.rule=Host(`hotmixes.net`)
+      - traefik.http.routers.hotmixes_ssl.rule=Host(`hotmixes.net`) || Host(`www.hotmixes.net`)
       - traefik.http.routers.hotmixes_ssl.entrypoints=websecure
       - traefik.http.routers.hotmixes_ssl.tls.certresolver=myresolver
 

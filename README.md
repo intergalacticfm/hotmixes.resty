@@ -10,25 +10,21 @@ Install `docker-compose`, e.g. with
 
     sudo apt-get install docker-compose
 
-# Configuration
-
-For testing, modify `docker-compose-local.yml` to find MP3 files on your local
-machine. Alternatively, create a directory `~/Music/alfa` with subdirectores
-starting with only lower case `a` until `z` and a directory which is named
-`0-9`. In those directories, place some MP3 files. Test directories can be
-created with
-
-    mkdir 0-9; for i in {a..z}; do mkdir $i; done
-
-# Build and run
+# Testing
 
 The local container is build and run with
 
     docker-compose -f docker-compose-local.yml up --build
 
-# Access
-
 The website offered by the local container is at http://localhost:8080
+
+In `docker-compose-local.yml` is a path to the test files. When working without
+test files, the top-level directory for files should contain subdirectores
+starting with only lower case `a` until `z` and `0` until `9`. These
+subdirectories can be created with
+
+    for i in {0..9}; do mkdir $i; done
+    for i in {a..z}; do mkdir $i; done
 
 # Validation
 

@@ -150,7 +150,7 @@
 {
     font-family: Staatliches;
     font-size: 33px;
-    color: e2001a;
+    color: #e2001a;
     line-height: 1em;
     margin-bottom: 0px;
     margin-top: 0px;
@@ -249,8 +249,6 @@
 {
     overflow: hidden;
     height: auto;
-    padding-left: auto;
-    padding-right: auto;
     width: 30%;
 }
 
@@ -337,7 +335,7 @@
         float: none;
         top: 5px;
         left: 5px;
-        height: 200px;
+        height: 100px;
     }
 }
 
@@ -345,8 +343,6 @@
 {
     width: 100%;
     margin-top: 40px;
-    padding-left: auto;
-    padding-right: auto;
 }
 
 .latest
