@@ -91,11 +91,9 @@ local function write_hotmixes()
         local files = {}
         local i, t, popen = 0, {}, io.popen
         local searchString = string.match(request, "/search/(.*)")
-        ngx.log(ngx.ERR, "search: " .. string.match(request, "/search/(.*)"))
-        local pfile = popen('find "' .. directory .. '" -type f -iname \'*' .. searchString .. '*.mp3\' -printf \'%C@ %p\n\'| sort -nr | head -7 | cut -f2- -d" "| sed s:"' .. directory .. '/"::')
+        local pfile = popen('find "' .. directory .. '" -type f \\( -iname \'*' .. searchString .. '*.mp3\' -o -iname \'*' .. searchString .. '*.mp4\' \\) -printf \'%C@ %p\n\'| sort -nr | head -7 | cut -f2- -d" "| sed s:"' .. directory .. '/"::')
 
         for file in pfile:lines() do
-            ngx.log(ngx.ERR, "file: " .. file)
             if file ~= "." and file ~= ".." and not string.match(file, ".filepart") then
                 table.insert(files, file)
             end
