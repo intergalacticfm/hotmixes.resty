@@ -11,7 +11,7 @@ window.addEventListener("load", function () {
 });
 
 function doSearch(searchText) {
-    if (searchText && searchText !== "") {
+    if (searchText && searchText.length > 2) {
         window.location.href = '/search/' + searchText;
     }
 }
