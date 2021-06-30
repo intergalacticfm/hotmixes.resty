@@ -1,5 +1,13 @@
 {(head.html)}
 
+<section class="search">
+    <div class="searchpanel">
+        <form id="searchForm">
+            <input id="searchText" type="text"/>
+            <button type="submit">Search</button>
+        </form>
+    </div>
+</section>
 <section class="alphabet">
 {% for i, dir in ipairs(local_dirs) do %}
     <a href="{{ local_uri .. dir }}" class="djsectionmenu">

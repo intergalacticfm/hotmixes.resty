@@ -375,15 +375,16 @@
     float: left;
 }
 
-.linkimg:hover
-{
+.linkimg:hover {
     filter: invert(70%);
 }
 
-@media (max-width:499px)
-{
-    .djsectionmenu500
-    {
+.searchpanel {
+    margin-bottom: 5px;
+}
+
+@media (max-width: 499px) {
+    .djsectionmenu500 {
         height: 70px;
         overflow: hidden;
         min-width: 60px;

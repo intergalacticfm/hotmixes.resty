@@ -10,6 +10,7 @@ services:
         volumes:
             - ./testfiles:/mnt/mixes:ro
             - ./templates:/app/templates
+            - ./js:/app/js
             - ./style:/app/style
             - ./img:/app/img
             - ./hotmixes:/app/hotmixes

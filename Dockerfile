@@ -11,6 +11,7 @@ RUN apk --no-cache add coreutils
 WORKDIR /app
 
 COPY templates /app/templates
+COPY js /app/js
 COPY style /app/style
 COPY img /app/img
 COPY hotmixes /app/hotmixes
