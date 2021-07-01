@@ -6,7 +6,7 @@ window.addEventListener("load", function () {
 
     if (window.location.href.indexOf('/search/') > -1) {
         let pathname = window.location.pathname;
-        document.getElementById('searchText').value = pathname.substr(pathname.lastIndexOf('/') + 1);
+        document.getElementById('searchText').value = decodeURI(pathname.substr(pathname.lastIndexOf('/') + 1));
     }
 });
 
