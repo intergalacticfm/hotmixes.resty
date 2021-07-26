@@ -3,19 +3,20 @@
 <section class="search">
     <div class="searchpanel">
         <form id="searchForm">
-            <input id="searchText" type="text"/>
-            <button type="submit">Search</button>
+            <input id="searchText" placeholder="search" class="search-text" type="text"/>
+            <button type="submit" class="search-button">Search</button>
         </form>
     </div>
 </section>
 <section class="alphabet">
-{% for i, dir in ipairs(local_dirs) do %}
+    {% for i, dir in ipairs(local_dirs) do %}
     <a href="{{ local_uri .. dir }}" class="djsectionmenu">
         <div class="alphabetpanel">
-            <img src="/img/letters/{{ dir:upper() }}@300.png" alt="Logo first letter filename {{ dir:upper() }}" class="alphabetimg alphabetimg500" />
+            <img src="/img/letters/{{ dir:upper() }}@300.png" alt="Logo first letter filename {{ dir:upper() }}"
+                 class="alphabetimg alphabetimg500"/>
         </div>
     </a>
-{% end %}
+    {% end %}
 </section>
 
 <section class="latest">
@@ -23,12 +24,12 @@
         <br>
         <br>
         <h1 class="h1">Our latest uploads:</h1>
-    {% for i, file in ipairs(local_latestpath) do %}
+        {% for i, file in ipairs(local_latestpath) do %}
         <a class="amixlink" href="{{ '/mixes/' .. file }}">
             <span class="mixlink">{{ local_latestname[i] }}</span>
         </a>
         <br>
-    {% end %}
+        {% end %}
     </div>
 </section>
 {(foot.html)}

@@ -2,8 +2,10 @@
 <section class="search">
     <div class="searchpanel">
         <form id="searchForm">
-            <input id="searchText" type="text"/>
-            <button type="submit" onclick="doSearch(document.getElementById('searchText').value)">Search</button>
+            <input id="searchText" placeholder="search" class="search-text" type="text"/>
+            <button type="submit" class="search-button" onclick="doSearch(document.getElementById('searchText').value)">
+                Search
+            </button>
         </form>
     </div>
 </section>

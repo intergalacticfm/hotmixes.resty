@@ -1,9 +1,8 @@
-.h1
-{
+.h1 {
     font-family: Staatliches;
     color: #e2001a;
     border-top: 3px solid #e2001a;
-    border-bottom: 3px solid#e2001a;
+    border-bottom: 3px solid #e2001a;
     padding-top: 5px;
     padding-bottom: 5px;
     margin-bottom: 15px;
@@ -11,22 +10,19 @@
     line-height: 1em;
 }
 
-.p
-{
+.p {
     font-family: Helvetica;
     color: #7e7e7e;
     margin-bottom: 45px;
     font-size: 10px;
 }
 
-.href
-{
+.href {
     font-family: Helvetica;
     text-decoration: none;
 }
 
-.mixlink
-{
+.mixlink {
     line-height: 16px;
     font-weight: 600;
     font-size: 14px;
@@ -35,8 +31,7 @@
     font-family: Helvetica, Arial, sans-serif;
 }
 
-.amixlink
-{
+.amixlink {
     font-family: Helvetica;
     color: #9d9d9d;
     line-height: 1.6em;
@@ -51,8 +46,7 @@
     border-radius: 20px;
 }
 
-.amixlink:hover
-{
+.amixlink:hover {
     font-family: Helvetica;
     color: #000;
     line-height: 1.6em;
@@ -61,16 +55,14 @@
     background: #e2001a;
 }
 
-.body
-{
+.body {
     width: 80%;
     padding-left: 10%;
     padding-right: 10%;
     background-color: #222222;
 }
 
-.mixsections
-{
+.mixsections {
     font-family: Staatliches;
     font-weight: 900;
     font-size: 16px;
@@ -83,16 +75,14 @@
     text-decoration: none;
 }
 
-.hotmixlogo
-{
+.hotmixlogo {
     width: 150px;
     padding-bottom: 0px;
     padding-left: 10px;
     padding-top: 10px;
 }
 
-.h2
-{
+.h2 {
     font-family: Staatliches;
     font-size: 24px;
     color: #4c4c4c;
@@ -101,15 +91,13 @@
     margin-bottom: 0px;
 }
 
-.header
-{
+.header {
     width: 100%;
     background-image: url('/img/header.png');
     max-height: 185px;
 }
 
-.footer
-{
+.footer {
     width: 100%;
     height: 250px;
     border-top: 2px solid #e2001a;
@@ -117,16 +105,14 @@
     clear: both;
 }
 
-.djsection
-{
+.djsection {
     font-family: Staatliches;
     font-size: 18px;
     text-decoration: inherit;
     color: #e2001a;
 }
 
-.djsectionmenu
-{
+.djsectionmenu {
     font-family: Staatliches;
     font-size: 33px;
     color: #e2001a;
@@ -141,13 +127,11 @@
     min-width: 130px;
 }
 
-.djsectionmenu:hover
-{
+.djsectionmenu:hover {
     background-color: #e3301a;
 }
 
-.djsection
-{
+.djsection {
     font-family: Staatliches;
     font-size: 33px;
     color: #e2001a;
@@ -160,13 +144,11 @@
     padding-bottom: 5px;
 }
 
-.djsection:hover
-{
+.djsection:hover {
     background-color: #000;
 }
 
-.h2
-{
+.h2 {
     font-family: Staatliches;
     color: #e2001a;
     font-size: 24px;
@@ -174,24 +156,20 @@
     border-bottom: 2px solid #e2001a;
 }
 
-.homeheader
-{
+.homeheader {
     background-image: url('/img/header.png');
     background-repeat: no-repeat;
     padding-bottom: 20px;
 }
 
-.bottomimg
-{
+.bottomimg {
 }
 
-.imglink
-{
+.imglink {
     width: 200px;
 }
 
-.footerlegal
-{
+.footerlegal {
     right: 0;
     float: right;
     margin-top: 80px;
@@ -199,8 +177,7 @@
 
 /* Three image containers (use 25% for four, and 50% for two, etc) */
 
-.column
-{
+.column {
     float: left;
     margin-left: 0px;
     padding-left: 2.5%;
@@ -210,58 +187,50 @@
 
 /* Clear floats after image containers */
 
-.row::after
-{
+.row::after {
     content: "";
     clear: both;
     display: table;
 }
 
-@media screen and (max-width: 768px)
-{
-    .column
-    {
+@media screen and (max-width: 768px) {
+    .column {
         padding-left: 5%;
         padding-right: 5%;
         width: 40%;
     }
-    .h2
-    {
+
+    .h2 {
         font-size: 14px;
     }
-    .footer
-    {
+
+    .footer {
         margin-top: 15%;
     }
 }
 
-@media screen and (max-width: 500px)
-{
-    .column
-    {
+@media screen and (max-width: 500px) {
+    .column {
         padding-left: 0%;
         padding-right: 5%;
         width: 45%;
     }
 }
 
-.profileimg
-{
+.profileimg {
     overflow: hidden;
     height: auto;
     width: 30%;
 }
 
-.profilesection
-{
+.profilesection {
     width: 100%;
     overflow: hidden;
     margin-bottom: 2.5%;
     background-color: #e2001a;
 }
 
-.image_collage
-{
+.image_collage {
     line-height: 0;
     -webkit-column-count: 5;
     -webkit-column-gap: 0px;
@@ -271,54 +240,44 @@
     column-gap: 0px;
 }
 
-.image_collage img
-{
+.image_collage img {
     width: 100% !important;
     height: auto !important;
 }
 
-@media (max-width: 1200px)
-{
-    .image_collage
-    {
+@media (max-width: 1200px) {
+    .image_collage {
         -moz-column-count: 4;
         -webkit-column-count: 4;
         column-count: 4;
     }
 }
 
-@media (max-width: 1000px)
-{
-    .image_collage
-    {
+@media (max-width: 1000px) {
+    .image_collage {
         -moz-column-count: 3;
         -webkit-column-count: 3;
         column-count: 3;
     }
 }
 
-@media (max-width: 800px)
-{
-    .image_collage
-    {
+@media (max-width: 800px) {
+    .image_collage {
         -moz-column-count: 2;
         -webkit-column-count: 2;
         column-count: 2;
     }
 }
 
-@media (max-width: 400px)
-{
-    .image_collage
-    {
+@media (max-width: 400px) {
+    .image_collage {
         -moz-column-count: 1;
         -webkit-column-count: 1;
         column-count: 1;
     }
 }
 
-.alphabetpanel
-{
+.alphabetpanel {
     width: 100%;
     float: left;
     border-top: 1px dotted;
@@ -327,10 +286,8 @@
     height: 100%;
 }
 
-@media (min-width:500px)
-{
-    .alphabetimg
-    {
+@media (min-width: 500px) {
+    .alphabetimg {
         position: relative;
         float: none;
         top: 5px;
@@ -339,28 +296,24 @@
     }
 }
 
-.alphabetgrid
-{
+.alphabetgrid {
     width: 100%;
     margin-top: 40px;
 }
 
-.latest
-{
+.latest {
     position: relative;
     clear: both;
 }
 
-.latestdiv
-{
+.latestdiv {
     width: 100%;
     position: relative;
     clear: both;
     float: left;
 }
 
-.alphabet
-{
+.alphabet {
     width: 100%;
     margin-bottom: 40px;
     float: left;
@@ -368,8 +321,7 @@
     margin-top: 20px;
 }
 
-.sponsors
-{
+.sponsors {
     margin-top: 20px;
     clear: both;
     float: left;
@@ -383,6 +335,54 @@
     margin-bottom: 5px;
 }
 
+:root {
+    --input-border: #8b8a8b;
+    --input-focus-h: 5;
+    --input-focus-s: 100%;
+    --input-focus-l: 42%;
+}
+
+.search-text {
+    font-size: 16px;
+/ / Capitalized to prevent Sass / / thinking it 's the Sass max() font-size: Max(16 px, 1 em); font-family: inherit;
+    padding: 0.25em 0.5em;
+    background-color: #fff;
+    border: 2px solid var(--input-border);
+    border-radius: 4px;
+    transition: 180ms box-shadow ease-in-out;
+}
+
+.search-text:focus {
+    border-color: hsl(
+            var(--input-focus-h),
+            var(--input-focus-s),
+            var(--input-focus-l)
+    );
+    box-shadow: 0 0 0 3px hsla(
+            var(--input-focus-h),
+            var(--input-focus-s),
+            calc(var(--input-focus-l) + 40%),
+            0.8
+    );
+    outline: 3px solid transparent;
+}
+
+.search-button {
+    box-shadow: inset 0px 1px 0px 0px #cf866c;
+    background: linear-gradient(to bottom, #e2001a 5%, #bc3315 100%);
+    background-color: #d0451b;
+    border-radius: 3px;
+    border: 1px solid #942911;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 13px;
+    padding: 6px 24px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #854629;
+}
+
 @media (max-width: 499px) {
     .djsectionmenu500 {
         height: 70px;
@@ -390,22 +390,20 @@
         min-width: 60px;
         width: 50%;
     }
-    .alphabetimg500
-    {
+
+    .alphabetimg500 {
         height: 100px;
     }
-    .alphabetpanel480down
-    {
+
+    .alphabetpanel480down {
         height: 70px;
         overflow: hidden;
         width: 100px;
     }
 }
 
-@media (max-width:767px)
-{
-    .h1mobile
-    {
+@media (max-width: 767px) {
+    .h1mobile {
         font-size: 18px;
     }
 }
