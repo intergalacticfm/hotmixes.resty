@@ -44,18 +44,6 @@ local function write_hotmixes()
         return t
     end
 
-    local function search_files(directory, searchString)
-        local i, filenames, popen = 0, {}, io.popen
-        local pfile = popen('find "' .. directory .. '" -type f -name \'*' .. searchString .. '*.mp3\' -printf \'%C@ %p\n\'| sort -nr | head -7 | cut -f2- -d" "| sed s:"' .. directory .. '/"::')
-
-        for filename in pfile:lines() do
-            i = i + 1
-            filenames[i] = filename
-        end
-        pfile:close()
-        return filenames
-    end
-
     local function these_files(path)
         local files, dirs, images = {}, {}, {}
         for file in lfs.dir(path) do
@@ -89,9 +77,10 @@ local function write_hotmixes()
 
     local function these_search(directory, request)
         local fileNames, files = {}, {}
-        local i, t, popen = 0, {}, io.popen
+        local popen = io.popen
         local searchString = string.match(request, "/search/(.*)")
-        local pfile = popen('find "' .. directory .. '" -type f \\( -iname \'*' .. searchString .. '*.mp3\' -o -iname \'*' .. searchString .. '*.mp4\' \\) -printf \'%C@ %p\n\'| sort -nr | head -7 | cut -f2- -d" "| sed s:"' .. directory .. '/"::')
+
+        local pfile = popen('find "' .. directory .. '" -type f \\( -iname \'*' .. searchString .. '*.mp3\' -o -iname \'*' .. searchString:gsub('[%p%c%s]', '') .. '*.mp4\' \\) -printf \'%C@ %p\n\'| sort -nr | head -7 | cut -f2- -d" "| sed s:"' .. directory .. '/"::')
 
         for file in pfile:lines() do
             if file ~= "." and file ~= ".." and not string.match(file, ".filepart") then
