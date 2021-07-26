@@ -10,9 +10,9 @@
 
 <div class="all_files">
     <h1 class="h1">Search results:</h1>
-    {% for i, file in ipairs(local_files) do %}
-    <a class="amixlink" href="{{ local_path .. file }}">
-        <span class="mixlink">{{ file }}</span>
+    {% for i, fileName in ipairs(local_fileNames) do %}
+    <a class="amixlink" href="{{ local_path .. local_files[fileName] }}">
+        <span class="mixlink">{{ fileName }}</span>
     </a>
     <br>
     {% end %}

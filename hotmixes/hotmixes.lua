@@ -88,22 +88,24 @@ local function write_hotmixes()
     end
 
     local function these_search(directory, request)
-        local files = {}
+        local fileNames, files = {}, {}
         local i, t, popen = 0, {}, io.popen
         local searchString = string.match(request, "/search/(.*)")
         local pfile = popen('find "' .. directory .. '" -type f \\( -iname \'*' .. searchString .. '*.mp3\' -o -iname \'*' .. searchString .. '*.mp4\' \\) -printf \'%C@ %p\n\'| sort -nr | head -7 | cut -f2- -d" "| sed s:"' .. directory .. '/"::')
 
         for file in pfile:lines() do
             if file ~= "." and file ~= ".." and not string.match(file, ".filepart") then
-                table.insert(files, file)
+                files[file:match("([^/]+)$")] = file
+                table.insert(fileNames, file:match("([^/]+)$"))
             end
         end
         pfile:close()
 
-        table.sort(files)
+        table.sort(fileNames)
 
         local stuff = {
-            files = files
+            files = files,
+            fileNames = fileNames
         }
         return stuff
     end
@@ -179,6 +181,7 @@ local function write_hotmixes()
             local_uri = request_path,
             local_path = '/mixes/',
             local_files = stuff["files"],
+            local_fileNames = stuff["fileNames"],
             local_latestpath = latest_path,
             local_latestname = latest_name
         })
