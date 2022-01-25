@@ -18,10 +18,16 @@ The local container is build and run with
 
 The website offered by the local container is at http://localhost:8080
 
-In `docker-compose-local.yml` is a path to the test files. When working without
-test files, the top-level directory for files should contain subdirectores
-starting with only lower case `a` until `z` and `0` until `9`. These
-subdirectories can be created with
+In `docker-compose-local.yml` is a path to the test files. The test files in
+this repo are in the directory `testfiles`. Note that in the directory `c` is
+a symbolic link to anonther directory and in `d` is a symbolic link to another
+MP3 file. Symbolic links are not counted in the total number of files and are
+not shown in latest uploads. Be careful not to create recursive loops when using
+symbolic links.
+
+When working without test files, the top-level directory for files should
+contain subdirectores starting with only lower case `a` until `z` and `0` until
+`9`. These subdirectories can be created with
 
     for i in {0..9}; do mkdir $i; done
     for i in {a..z}; do mkdir $i; done
