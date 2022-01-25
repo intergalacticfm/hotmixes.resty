@@ -32,6 +32,12 @@ contain subdirectores starting with only lower case `a` until `z` and `0` until
     for i in {0..9}; do mkdir $i; done
     for i in {a..z}; do mkdir $i; done
 
+# Logging
+
+On the server, the log can be monitored with
+
+    tail -f ~/home/traefik/log/access.log
+
 # Validation
 
 Check:
