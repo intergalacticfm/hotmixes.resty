@@ -10,6 +10,7 @@ RUN apk --no-cache add coreutils
 
 WORKDIR /app
 
+COPY goaccess /app/goaccess
 COPY templates /app/templates
 COPY style /app/style
 COPY img /app/img

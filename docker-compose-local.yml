@@ -13,5 +13,6 @@ services:
             - ./style:/app/style
             - ./img:/app/img
             - ./hotmixes:/app/hotmixes
+            - ./goaccess:/app/goaccess:ro
         tmpfs:
             - /tmp
