@@ -94,8 +94,7 @@ Add to `/etc/crond.d/traefik` the line:
 and every hour, an updated report is available at
 https://hotmixes.net/goaccess/goaccess.html To manually trigger an update, run
 
-    sudo -i hotmixes
-    hotmixes.resty/report-log.sh
+    sudo hotmixes.resty/report-log.sh
 
 # Validation
 

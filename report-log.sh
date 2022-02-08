@@ -3,6 +3,7 @@
 LOG=~traefik/log
 DST=~hotmixes/hotmixes.resty/goaccess
 NAME=Traefik
+rm -f /tmp/goaccess
 zcat $(find $LOG/ -name "access.log.*.gz" -mtime -35) > /tmp/goaccess
 cat $(ls $LOG/access.log*|grep -v gz) >> /tmp/goaccess
 goaccess /tmp/goaccess -o $DST/goaccess-$(date +'%Y%m').html --log-format=COMBINED --html-report-title=$NAME --geoip-database=/var/lib/GeoIP/GeoLite2-City.mmdb
