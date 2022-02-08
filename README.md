@@ -34,9 +34,68 @@ contain subdirectores starting with only lower case `a` until `z` and `0` until
 
 # Logging
 
+## HTTP service
+
 On the server, the log can be monitored with
 
-    tail -f ~/home/traefik/log/access.log
+    sudo tail -f ~traefik/log/access.log
+
+Create the file `/etc/logrotate.d/traefik` with
+
+    ~traefik/log/*.log {
+      daily
+      rotate 36
+      compress
+      delaycompress
+      notifempty
+      create 644 traefik traefik
+      sharedscripts
+      postrotate
+        docker kill --signal="USR1" traefik
+      endscript
+    }
+
+## GeoIP
+
+To look up geographical information for an IP address, get a free account at
+https://dev.maxmind.com/geoip/geolite2-free-geolocation-data?lang=en via
+https://www.maxmind.com/en/geolite2/signup?lang=en and get a free API key via
+https://www.maxmind.com/en/accounts/current/license-key?lang=en
+
+See `/root/geoip-api-key` for credentials.
+
+Then install the download and automatic update software with
+
+    sudo apt-get install geoipupdate
+
+Update the AccountID and LicenseKey with
+
+    sudo vi /etc/GeoIP.conf
+
+and remove `GeoLite2-Country` from the line starting with `EditionIDs` Then, run
+
+    sudo geoipupdate
+
+This will download files in `/var/lib/GeoIP/`
+
+## GoAccess
+
+Read https://goaccess.io/download and then install GoAccess with:
+
+    wget -O - https://deb.goaccess.io/gnugpg.key | gpg --dearmor | sudo tee /usr/share/keyrings/goaccess.gpg >/dev/null
+    echo "deb [signed-by=/usr/share/keyrings/goaccess.gpg] https://deb.goaccess.io/ $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/goaccess.list
+    sudo apt-get update
+    sudo apt-get install goaccess
+
+Add to `/etc/crond.d/traefik` the line:
+
+    0 * * * *	root	~hotmixes/hotmices.resty/report-log.sh
+
+and every hour, an updated report is available at
+https://hotmixes.net/goaccess/goaccess.html To manually trigger an update, run
+
+    sudo -i hotmixes
+    hotmixes.resty/report-log.sh
 
 # Validation
 
