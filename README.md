@@ -10,6 +10,17 @@ Install `docker-compose`, e.g. with
 
     sudo apt-get install docker-compose
 
+Filenames should not have the following characters:
+- space ` `
+- brackets `(`, `)`, `[`, `]`, `{`, `}`
+- at `@`
+
+Use for separators:
+- period `.` (to replace a space e.g.)
+- hyphen `-`
+
+Use all caps for artist names.
+
 # Testing
 
 The local container is build and run with
@@ -87,9 +98,9 @@ Read https://goaccess.io/download and then install GoAccess with:
     sudo apt-get update
     sudo apt-get install goaccess
 
-Add to `/etc/crond.d/traefik` the line:
+Add to `/etc/cron.d/traefik` the line:
 
-    0 * * * *	root	~hotmixes/hotmices.resty/report-log.sh
+    0 * * * *	root	~hotmixes/hotmixes.resty/report-log.sh
 
 and every hour, an updated report is available at
 https://hotmixes.net/goaccess/goaccess.html To manually trigger an update, run
