@@ -13,6 +13,9 @@ Install `docker-compose`, e.g. with
 Filenames should not have the following characters:
 - space ` `
 - brackets `(`, `)`, `[`, `]`, `{`, `}`
+- slashes `\`, `/`
+- interpunction `?`, `!`, `&`
+- special characters `#`, `*`, `$`
 - at `@`
 
 Use for separators:
