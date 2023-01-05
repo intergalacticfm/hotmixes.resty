@@ -16,7 +16,7 @@ echo '<body>' >> $DST/goaccess.html
 echo '<h1>GoAccess '$NAME'</h1>' >> $DST/goaccess.html
 echo '<p>Updated every hour on the hour. Available monthly reports are:</p>' >> $DST/goaccess.html
 echo '<ul>' >> $DST/goaccess.html
-for i in $(ls $DST/goaccess-*|sort); do
+for i in $(ls $DST/goaccess-*|sort -r); do
 	f=$(basename $i)
 	echo '<li><a href="'$f'">'$f'</a></li>' >> $DST/goaccess.html
 done
