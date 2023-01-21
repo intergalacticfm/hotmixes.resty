@@ -119,3 +119,32 @@ Check:
 - i18n https://validator.w3.org/i18n-checker/check?uri=https%3A%2F%2Fhotmixes.net
 - RSS https://validator.w3.org/feed/check.cgi?url=https%3A%2F%2Fhotmixes.net%2Flatest.xml
 - unified https://validator.w3.org/unicorn/check?ucn_uri=https%3A%2F%2Fhotmixes.net&ucn_task=conformance
+
+# Backup
+
+Backup is done via Synchting. Install it with:
+
+    sudo apt-get install syncthing
+
+See https://docs.syncthing.net/users/autostart.html#linux and configure with:
+
+   cd /etc/systemd/system
+   sudo su
+   ln -s /lib/systemd/system/syncthing@.service
+   systemctl enable syncthing@root.service
+   systemctl start syncthing@root.service
+   cd ~/.config/syncthing
+
+Edit the file `config.xml` and change this line (note there are two changes):
+
+    <gui enabled="true" tls="false" debugging="false">
+
+into:
+
+    <gui enabled="false" tls="true" debugging="false">
+
+Also add devices manually, as a device and in a folder that is shared. Changes
+to this file might need restart of the service with:
+
+    systemctl stop syncthing@root.service
+    systemctl start syncthing@root.service
