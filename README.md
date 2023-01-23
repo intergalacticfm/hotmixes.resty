@@ -14,15 +14,30 @@ Filenames should not have the following characters:
 - space ` `
 - brackets `(`, `)`, `[`, `]`, `{`, `}`
 - slashes `\`, `/`
-- interpunction `?`, `!`, `&`
+- interpunction `?`, `!`, `&`, ','
 - special characters `#`, `*`, `$`
 - at `@`
 
 Use for separators:
 - period `.` (to replace a space e.g.)
+- plus `+` (to replace an ampersand `&` e.g.)
+- `at` (to replace an at `@` e.g.)
 - hyphen `-`
 
 Use all caps for artist names.
+
+Symbolic links under `/media/music` are possible and will not influence the
+total file count. Reason for doing that is to link from an artist's directory
+to a set in a directory of a venue such as the PRC. When working with links, run
+the following command from this top-level directory to find possible broken
+links:
+
+    find . -xtype l
+
+For finding duplicates, run:
+
+    fdupes -r .
+
 
 # Testing
 
@@ -148,3 +163,12 @@ to this file might need restart of the service with:
 
     systemctl stop syncthing@root.service
     systemctl start syncthing@root.service
+
+See also https://docs.syncthing.net/users/firewall.html and to get introduced to
+the instance on this server, first stop the service, add the lines below to
+`config.xml` and start the server again.
+
+    TODO (he paragraph above and test below is work in progress)
+
+Add this Device ID (should not be mentioned here) on the backup machine and
+add under Advanced the Address `tcp://ip.v4a.ddr.ess:22000`. (IP should also not be mentoined here.)
