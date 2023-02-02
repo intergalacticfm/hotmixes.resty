@@ -86,26 +86,28 @@ Create the file `/etc/logrotate.d/traefik` with
 
 ## GeoIP
 
-To look up geographical information for an IP address, get a free account at
-https://dev.maxmind.com/geoip/geolite2-free-geolocation-data?lang=en via
-https://www.maxmind.com/en/geolite2/signup?lang=en and get a free API key via
-https://www.maxmind.com/en/accounts/current/license-key?lang=en
-
-See `/root/geoip-api-key` for credentials.
-
-Then install the download and automatic update software with
+Install software to daily download database for looking up geographical
+information for an IP address with
 
     sudo apt-get install geoipupdate
 
-Update the AccountID and LicenseKey with
+Get a free account for GeoLite2 at
+https://www.maxmind.com/en/geolite2/signup?lang=en with email address
+radio@intergalactic.fm as username. Then, get a free API key via
+https://www.maxmind.com/en/accounts/current/license-key?lang=en and name it
+`hotmixes`. See also `/root/geoip-api-key` for credentials.
 
-    sudo vi /etc/GeoIP.conf
+Overwrite the configuration file with
 
-and remove `GeoLite2-Country` from the line starting with `EditionIDs` Then, run
+    sudo cp -f GeoIP.conf /etc/
+
+Then, run once manually
 
     sudo geoipupdate
 
-This will download files in `/var/lib/GeoIP/`
+This will download files in `/var/lib/GeoIP/`. Note not to instapp geoipupdate
+from its upstream PPA as it uses different default directories and is lacking
+files for cron.
 
 ## GoAccess
 
